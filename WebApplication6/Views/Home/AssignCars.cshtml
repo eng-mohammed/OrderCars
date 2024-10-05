@@ -1,0 +1,35 @@
+﻿@model OrderCarViewModel
+
+<form asp-action="SaveOrderCars" method="post">
+    <input type="hidden" asp-for="OrderId" />
+    <input type="hidden" asp-for="@Model.OrderName" />
+    <h2>@Model.OrderName</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Car Name</th>
+                <th>Driver Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Cars.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" asp-for="@Model.Cars[i].IsSelected" />
+                        <input type="hidden" asp-for="@Model.Cars[i].CarId" />
+                    </td>
+                    <td>@Model.Cars[i].CarName</td>
+                    <td>
+                        <input type="text" asp-for="@Model.Cars[i].DriverName" />
+                        <input type="hidden" asp-for="@Model.OrderName" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit">Save</button>
+</form>
